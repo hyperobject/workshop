@@ -1,8 +1,14 @@
-elif 'illuminate' in path:
-	regex = re.compile('\/illuminate(on|off)')
-	m = regex.match(path)
-	setl = m.group(1)
-	if setl == 'on':
-		l.set_illuminated(True)
-	elif setl == 'off':
-		l.set_illuminated(False)
+elif path == '/nxtlight': #light
+	f = open(ospath + '/nxtreturn', 'w+')
+	f.write(str(l.get_sample()))
+	f.close()
+	f = open(ospath + '/nxtreturn', 'rb')
+	ctype = self.guess_type(ospath + '/nxtreturn')
+	self.send_response(200)
+	self.send_header("Content-type", ctype)
+	fs = os.fstat(f.fileno())
+	self.send_header("Content-Length", str(fs[6]))
+	self.send_header("Last-Modified", self.date_time_string(fs.st_mtime))
+	self.send_header("Access-Control-Allow-Origin", "*")
+	self.end_headers()
+	return f
