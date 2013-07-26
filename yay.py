@@ -1,4 +1,3 @@
-import snapext
-import your_modules
-handler = snapext.SnapHandler
-setup_functions()
+@handler.route('/command')
+def your_function(input):
+  some_function_with_an(input)
