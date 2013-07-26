@@ -1,7 +1,4 @@
-import os
-import re
-import SocketServer
-import pyttsx
-import urllib2
-PORT = 59591 #T+T+S twice
-engine = pyttsx.init()
+import snapext
+import your_modules
+handler = snapext.SnapHandler
+setup_functions()
